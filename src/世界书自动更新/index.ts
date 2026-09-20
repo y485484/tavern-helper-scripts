@@ -6,6 +6,7 @@ import 设置界面 from './设置界面.vue';
 
 const RESCAN_BUTTON = '重扫世界书更新';
 const COPY_GUIDE_BUTTON = '复制世界书更新格式';
+const INJECT_ID = '世界书自动更新-格式说明';
 
 $(() => {
   setActivePinia(pinia);
@@ -17,7 +18,26 @@ $(() => {
   app.mount($app[0]);
   const { destroy } = teleportStyle();
 
+  // 自动把更新格式说明注入到每次 AI 请求中 (注入仅对当前聊天有效, 因此聊天切换时重新注入)
+  function injectFormatGuide() {
+    uninjectPrompts([INJECT_ID]);
+    injectPrompts([
+      {
+        id: INJECT_ID,
+        position: 'in_chat',
+        depth: 0,
+        role: 'system',
+        content: FORMAT_GUIDE,
+        filter: () => store.settings.inject_enabled && store.settings.enabled,
+        should_scan: false,
+      },
+    ]);
+  }
+  injectFormatGuide();
+  eventOn(tavern_events.CHAT_CHANGED, () => injectFormatGuide());
+
   $(window).on('pagehide', () => {
+    uninjectPrompts([INJECT_ID]);
     app.unmount();
     $app.remove();
     destroy();

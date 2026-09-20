@@ -14,6 +14,13 @@
         </div>
 
         <div class="worldbook-auto-update-block flex-container">
+          <label class="checkbox_label">
+            <input v-model="settings.inject_enabled" type="checkbox" />
+            <span>自动向 AI 注入格式说明 (无需手动写进预设)</span>
+          </label>
+        </div>
+
+        <div class="worldbook-auto-update-block flex-container">
           <label>
             目标世界书:
             <select v-model="settings.worldbook_mode" class="text_pole">

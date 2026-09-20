@@ -5,6 +5,7 @@ import { ref, watchEffect } from "vue";
 const SettingsSchema = z
   .object({
     enabled: z.boolean().default(true),
+    inject_enabled: z.boolean().default(true),
     worldbook_mode: z.enum(['auto', 'manual']).default('auto'),
     worldbook_name: z.string().default(''),
     auto_create: z.boolean().default(true),
