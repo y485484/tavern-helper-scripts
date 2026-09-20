@@ -1,0 +1,7 @@
+{
+  "id": "c5f8a2b3-6d1e-4a9c-9b7f-2e4d6c8a0b1f",
+  "name": "世界书自动更新",
+  "content": "import 'https://testingcf.jsdelivr.net/gh/y485484/tavern-helper-scripts@v0.0.3/dist/世界书自动更新/index.js'",
+  "info": "长线RP游玩时, 由AI按约定格式输出「世界书更新」标记, 脚本自动把更新内容写入世界书对应条目. 脚本会自动向AI注入格式说明, 也可点击脚本按钮「复制世界书更新格式」手动查看.",
+  "buttons": []
+}
